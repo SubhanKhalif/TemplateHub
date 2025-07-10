@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
   likedTemplates: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Template'
+  }],
+  bookmarks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Template'
   }]
 });
 
