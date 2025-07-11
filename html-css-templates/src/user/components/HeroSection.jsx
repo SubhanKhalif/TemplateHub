@@ -31,7 +31,7 @@ const HeroSection = () => {
       ref={sectionRef}
       className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white py-28 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
+      <div className="max-w-7xl mt-20 mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-12">
         {/* Left Text Content */}
         <div className="w-full lg:w-1/2 text-center lg:text-left">
           <h1 className="text-5xl lg:text-6xl font-bold mb-6 hero-text">

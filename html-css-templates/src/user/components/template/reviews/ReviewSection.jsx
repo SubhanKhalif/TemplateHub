@@ -15,17 +15,6 @@ const ReviewSection = ({ templateId }) => {
   const [showFullSummary, setShowFullSummary] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const fetchLoggedInUser = async () => {
-    try {
-      const res = await API.get("/user/me", {
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
-      return res.data;
-    } catch {
-      return null;
-    }
-  };
-
   const fetchReviews = async () => {
     try {
       const { data } = await API.get(`/reviews/${templateId}`);
@@ -37,8 +26,7 @@ const ReviewSection = ({ templateId }) => {
       );
 
       if (user) {
-        const currentUser = await fetchLoggedInUser();
-        const existingReview = data.find((r) => r.user._id === currentUser.id);
+        const existingReview = data.find((r) => r.user._id === user.id);
         setUserReview(existingReview || null);
       }
     } catch (err) {

@@ -6,11 +6,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Input from "../components/Input";
 import Textarea from "../components/Textarea";
-import { SendHorizonal } from "lucide-react";
+import { SendHorizonal, Loader2 } from "lucide-react";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     AOS.init({ duration: 800 });
@@ -23,6 +24,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("");
+    setIsLoading(true);
 
     try {
       await axios.post("http://localhost:5000/api/contact", form);
@@ -31,6 +33,8 @@ const Contact = () => {
     } catch (err) {
       console.error(err);
       setStatus("❌ Failed to send message. Try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -85,10 +89,20 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="group relative w-full flex justify-center items-center gap-2 bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:bg-indigo-700 hover:scale-[1.02] transition-all duration-300"
+              disabled={isLoading}
+              className="group relative w-full flex justify-center items-center gap-2 bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:bg-indigo-700 hover:scale-[1.02] transition-all duration-300 disabled:opacity-80 disabled:cursor-wait"
             >
-              Send Message
-              <SendHorizonal className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              {isLoading ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <SendHorizonal className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
             </button>
           </form>
         </div>

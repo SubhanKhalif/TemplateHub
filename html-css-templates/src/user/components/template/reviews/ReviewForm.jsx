@@ -17,10 +17,7 @@ const ReviewForm = ({ templateId, userReview, refreshReviews, onCancel }) => {
         endpoint,
         editing
           ? { rating, comment }
-          : { templateId, rating, comment, userId: user.id },
-        {
-          headers: { Authorization: `Bearer ${user.token}` },
-        }
+          : { templateId, rating, comment, userId: user._id }
       );
       setComment("");
       setRating(5);

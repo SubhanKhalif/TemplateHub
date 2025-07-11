@@ -25,12 +25,8 @@
     "react-router-dom": "^7.5.0",
     "react-scroll": "^1.9.3",
     "react-toastify": "^11.0.5",
-<<<<<<< HEAD
-    "styled-components": "^6.1.18",
-    "typewriter-effect": "^2.22.0",
-=======
     "styled-components": "^6.1.19",
->>>>>>> 99b30377a926d9c67c6b5daf1aedaf95e69a27d3
+    "typewriter-effect": "^2.22.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
